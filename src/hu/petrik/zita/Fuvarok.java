@@ -1,6 +1,7 @@
 package hu.petrik.zita;
 
 import java.io.*;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -44,6 +45,17 @@ public class Fuvarok {
         bevetel=doll(a);
 
         return String.format(a+" azonósító számmal rendelkező taxinak a bevétele %4.2f $, ami %d fuvarból állt.",bevetel,szam);
+    }
+    public double merfoldMind(){
+        return fuvarok.stream().mapToDouble(Fuvar::getTavolsag).sum();
+    }
+
+    public Fuvar leghosszabbFuvar(){
+        return fuvarok.stream().max(Comparator.comparingDouble(fuvar -> fuvar.getIdotartam())).get();
+    }
+
+    public Fuvar legbokezubbFuvar(){
+        return fuvarok.stream().max(Comparator.comparingDouble(fuvar -> fuvar.getBorravalo())).get();
     }
 
 

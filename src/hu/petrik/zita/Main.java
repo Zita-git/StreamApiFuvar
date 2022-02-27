@@ -7,16 +7,19 @@ public class Main {
         System.out.println(FU);
 
         System.out.println("1. Feladat");
-        System.out.println(FU.utazasokSzama()+" db");
+        System.out.println(FU.utazasokSzama()+" db.");
 
         System.out.println("\n2. Feladat");
         System.out.println(FU.bevetelFuvar(6185));
 
         System.out.println("\n3. Feladat");
+        System.out.println(FU.merfoldMind()+" mérföldet tettek meg a taxisok összesen.");
 
         System.out.println("\n4. Feladat");
+        System.out.println("Az időben leghosszabb fuvar adatai:\n"+FU.leghosszabbFuvar());
 
         System.out.println("\n5. Feladat");
+        System.out.println("A legbőkezűbb borravalóval ajándékozott fuvar adatai:\n"+FU.legbokezubbFuvar());
 
         System.out.println("\n6. Feladat");
 
