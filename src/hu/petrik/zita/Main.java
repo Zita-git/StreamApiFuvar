@@ -22,6 +22,7 @@ public class Main {
         System.out.println("A legbőkezűbb borravalóval ajándékozott fuvar adatai:\n"+FU.legbokezubbFuvar());
 
         System.out.println("\n6. Feladat");
+        System.out.println(FU.osszKilometer(4261));
 
         System.out.println("\n7. Feladat");
 

@@ -33,10 +33,10 @@ public class Fuvarok {
     }
 
     public double doll(double a){
-        return fuvarok.stream().filter(fuvar -> fuvar.getTaxi_id()== fuvar.getTaxi_id()).mapToDouble(fuvar -> fuvar.getViteldij()+fuvar.getBorravalo()).sum();
+        return fuvarok.stream().filter(fuvar -> fuvar.getTaxi_id()== a).mapToDouble(fuvar -> fuvar.getViteldij()+fuvar.getBorravalo()).sum();
     }
     public long db(int a){
-        return fuvarok.stream().filter(fuvar -> fuvar.getTaxi_id()== fuvar.getTaxi_id()).count();
+        return fuvarok.stream().filter(fuvar -> fuvar.getTaxi_id()== a).count();
     }
     public String bevetelFuvar(int a){
         double bevetel;
@@ -57,6 +57,18 @@ public class Fuvarok {
     public Fuvar legbokezubbFuvar(){
         return fuvarok.stream().max(Comparator.comparingDouble(fuvar -> fuvar.getBorravalo())).get();
     }
+
+    public double merfold(int a){
+        return fuvarok.stream().filter(fuvar -> fuvar.getTaxi_id()== a).mapToDouble(fuvar->fuvar.getTavolsag()).sum();
+    }
+    public String osszKilometer(int a){
+        double szam;
+        szam=merfold(a)*1.6;
+
+        return String.format(a+" azonósító számmal rendelkező taxis összesen %2.2f kilómétert tett meg.",szam);
+    }
+
+
 
 
 
