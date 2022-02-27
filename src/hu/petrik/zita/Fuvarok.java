@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Fuvarok {
     private List<Fuvar> fuvarok;
@@ -51,15 +52,15 @@ public class Fuvarok {
     }
 
     public Fuvar leghosszabbFuvar(){
-        return fuvarok.stream().max(Comparator.comparingDouble(fuvar -> fuvar.getIdotartam())).get();
+        return fuvarok.stream().max(Comparator.comparingDouble(Fuvar::getIdotartam)).get();
     }
 
     public Fuvar legbokezubbFuvar(){
-        return fuvarok.stream().max(Comparator.comparingDouble(fuvar -> fuvar.getBorravalo())).get();
+        return fuvarok.stream().max(Comparator.comparingDouble(Fuvar::getBorravalo)).get();
     }
 
     public double merfold(int a){
-        return fuvarok.stream().filter(fuvar -> fuvar.getTaxi_id()== a).mapToDouble(fuvar->fuvar.getTavolsag()).sum();
+        return fuvarok.stream().filter(fuvar -> fuvar.getTaxi_id()== a).mapToDouble(Fuvar::getTavolsag).sum();
     }
     public String osszKilometer(int a){
         double szam;
@@ -67,6 +68,34 @@ public class Fuvarok {
 
         return String.format(a+" azonósító számmal rendelkező taxis összesen %2.2f kilómétert tett meg.",szam);
     }
+
+    public long hibasSorSzama(){
+        return fuvarok.stream().filter(fuvar -> (fuvar.getIdotartam()>0 && fuvar.getViteldij()>0&&fuvar.getTavolsag()==0)).count();
+    }
+    public long hibasSorOsszIdo(){
+        return fuvarok.stream().filter(fuvar -> (fuvar.getIdotartam()>0 && fuvar.getViteldij()>0&&fuvar.getTavolsag()==0)).mapToInt(Fuvar::getIdotartam).sum();
+    }
+    public double hibasSorTeljesBevetel(){
+        return fuvarok.stream().filter(fuvar -> (fuvar.getIdotartam()>0 && fuvar.getViteldij()>0&&fuvar.getTavolsag()==0)).mapToDouble(fuvar -> fuvar.getViteldij()+fuvar.getBorravalo()).sum();
+    }
+
+    public String szerepelE(int a){
+        if (fuvarok.stream().anyMatch(fuvar -> fuvar.getTaxi_id() == a)){
+            return "A(z) "+a+" azonosítóval rendelkezű taxi szerepel az adatok között";
+        }else {
+            return "A(z) "+a+" azonosítóval rendelkezű taxi nem szerepel az adatok között";
+        }
+    }
+
+    public List<Fuvar> haromLegRovidebb(){
+        return fuvarok.stream().filter(fuvar -> fuvar.getIdotartam()>0).sorted(Comparator.comparing(Fuvar::getIdotartam)).limit(3).collect(Collectors.toList());
+    }
+
+    public String voltEAznap(String sz){
+        long szam=fuvarok.stream().filter(fuvar -> fuvar.getIndulas().contains(sz)).count();
+        return String.format(sz+"-i napon "+szam+" fuvar volt.");
+    }
+
 
 
 

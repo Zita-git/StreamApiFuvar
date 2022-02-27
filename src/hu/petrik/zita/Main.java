@@ -25,14 +25,21 @@ public class Main {
         System.out.println(FU.osszKilometer(4261));
 
         System.out.println("\n7. Feladat");
+        System.out.println("a.) "+FU.hibasSorSzama());
+        System.out.println("b.) "+FU.hibasSorOsszIdo());
+        System.out.println("c.) "+FU.hibasSorTeljesBevetel());
 
         System.out.println("\n8. Feladat");
+        System.out.println(FU.szerepelE(1452));
 
         System.out.println("\n9. Feladat");
+        System.out.println("A három legrövidebb időtartamú fuvar adatai:\n"+FU.haromLegRovidebb());
 
         System.out.println("\n10. Feladat");
+        System.out.println(FU.voltEAznap("2016-12-24"));
 
         System.out.println("\n11. Feladat");
+        System.out.println("Nem tudom");
     }
 
 }
